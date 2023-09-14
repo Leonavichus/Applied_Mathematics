@@ -11,14 +11,11 @@ double trapezoidalMethod(double a, double b, int n) {
   double h = (b - a) / n;
   double integral = 0;
 
-  // Добавляем значения функции в углах трапеций и усредняем их
-  for (int i = 0; i <= n; i++) {
-    double x = a + i * h;
-    if (i == 0 || i == n) {
-      integral += f(x) / 2; // Половина значения на краях
-    } else {
-      integral += f(x);
-    }
+  // Вычисляем сумму по формуле трапеций
+  for (int i = 0; i < n; i++) {
+    double x0 = a + i * h;
+    double x1 = a + (i + 1) * h;
+    integral += (f(x0) + f(x1)) / 2;
   }
 
   // Умножаем на ширину трапеций, чтобы получить интеграл
@@ -39,4 +36,12 @@ void main() {
 
   // Выводим результат на экран
   print('Значение интеграла (метод трапеций): $integral');
+
+  // Вычисление погрешности
+  double h = (b - a) / n;
+  double xi = a + Random().nextDouble() * (b - a); // Случайная точка на отрезке
+  double secondDerivative = 16.0 * xi * xi / pow(16 - xi * xi, 1.5) - 2.0; // Вторая производная функции
+  double error = (((b - a) * h * h * secondDerivative) / 12.0).abs();
+  
+  print('Погрешность метода трапеций: ${error.toStringAsFixed(6)}');
 }

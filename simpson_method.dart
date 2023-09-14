@@ -16,15 +16,10 @@ double simpsonsRule(double a, double b, int n) {
   double h = (b - a) / n;
   double integral = 0;
 
-  // Добавляем значения функции с весами (по формуле Симпсона)
-  integral += f(a) + f(b); // Края подинтервала
-  for (int i = 1; i < n; i += 2) {
+   // Вычисляем сумму по формуле Симпсона
+  for (int i = 1; i < n; i++) {
     double x = a + i * h;
-    integral += 4 * f(x); // Умножаем на 4 для нечетных индексов
-  }
-  for (int i = 2; i < n - 1; i += 2) {
-    double x = a + i * h;
-    integral += 2 * f(x); // Умножаем на 2 для четных индексов
+    integral += (i % 2 == 0) ? 2 * f(x) : 4 * f(x);
   }
 
   // Умножаем на h/3 по формуле Симпсона, чтобы получить интеграл
@@ -45,4 +40,13 @@ void main() {
 
   // Выводим результат на экран
   print('Значение интеграла (метод Симпсона): $integral');
+
+  // Вычисление погрешности
+  double h = (b - a) / n;
+  double xi = a + Random().nextDouble() * (b - a); // Случайная точка на отрезке
+  double fourthDerivative =
+      -16.0 * (3 * xi * xi - 8) * (3 * xi * xi - 4) / pow(16 - xi * xi, 2.5); // Четвертая производная функции
+  double error = (((b - a) * h * h * h * h * fourthDerivative) / 2880.0).abs();
+
+  print('Погрешность метода Симпсона: ${error.toStringAsFixed(6)}');
 }
