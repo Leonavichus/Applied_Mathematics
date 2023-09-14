@@ -11,15 +11,12 @@ double trapezoidalMethod(double a, double b, int n) {
   double h = (b - a) / n;
   double integral = 0;
 
-  // Вычисляем сумму по формуле трапеций
-  for (int i = 0; i < n; i++) {
+ for (int i = 0; i < n; i++) {
     double x0 = a + i * h;
     double x1 = a + (i + 1) * h;
-    integral += (f(x0) + f(x1)) / 2;
+    integral += (f(x0) + f(x1)) / 2 * h;
   }
-
-  // Умножаем на ширину трапеций, чтобы получить интеграл
-  integral *= h;
+  
   return integral;
 }
 
