@@ -65,8 +65,9 @@ void main() {
   // Вычисление погрешности
   double h = (b - a) / n;
   double xi = a + Random().nextDouble() * (b - a); // Случайная точка на отрезке
-  double secondDerivative = 16.0 * xi * xi / (pow(16 - xi * xi, 1.5)) - 2.0; // Вторая производная функции
+  double secondDerivative = 16.0 * xi * xi / (pow(16 - xi * xi, 1.5)) -
+      2.0; // Вторая производная функции
   double error = (((b - a) * h * h * secondDerivative) / 24.0).abs();
 
-  print('Погрешност: ${error.toStringAsFixed(6)}');
+  print('Погрешность: ${error.toStringAsFixed(6)}');
 }

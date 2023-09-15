@@ -16,7 +16,7 @@ double simpsonsRule(double a, double b, int n) {
   double h = (b - a) / n;
   double integral = 0;
 
-   // Вычисляем сумму по формуле Симпсона
+  // Вычисляем сумму по формуле Симпсона
   for (int i = 1; i < n; i++) {
     double x = a + i * h;
     integral += (i % 2 == 0) ? 2 * f(x) : 4 * f(x);
@@ -44,8 +44,10 @@ void main() {
   // Вычисление погрешности
   double h = (b - a) / n;
   double xi = a + Random().nextDouble() * (b - a); // Случайная точка на отрезке
-  double fourthDerivative =
-      -16.0 * (3 * xi * xi - 8) * (3 * xi * xi - 4) / pow(16 - xi * xi, 2.5); // Четвертая производная функции
+  double fourthDerivative = -16.0 *
+      (3 * xi * xi - 8) *
+      (3 * xi * xi - 4) /
+      pow(16 - xi * xi, 2.5); // Четвертая производная функции
   double error = (((b - a) * h * h * h * h * fourthDerivative) / 2880.0).abs();
 
   print('Погрешность метода Симпсона: ${error.toStringAsFixed(6)}');
