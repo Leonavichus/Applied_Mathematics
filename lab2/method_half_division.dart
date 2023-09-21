@@ -12,9 +12,11 @@ double solveEquation(double a, double b, double epsilon) {
   }
 
   double mid = 0;
+  int iteration = 0;
   while ((b - a).abs() > epsilon) {
     // Находим середину интервала
     mid = (a + b) / 2;
+    iteration++;
 
     if (f(a) * f(mid) >= 0) {
       // Корень находится в левой половине интервала
@@ -27,6 +29,7 @@ double solveEquation(double a, double b, double epsilon) {
       return mid;
     }
   }
+  print('Количество итераций: $iteration');
   return mid;
 }
 

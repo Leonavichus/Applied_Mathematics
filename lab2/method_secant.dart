@@ -12,11 +12,13 @@ double solveEquation(double a, double b, double epsilon) {
   }
 
   double k = (b - a) / (f(b) - f(a));
+  int iteration = 0;
 
   while (f(a).abs() > epsilon) {
     a = a - k * f(a);
+    iteration++;
   }
-
+  print('Количество итераций: $iteration');
   return a;
 }
 

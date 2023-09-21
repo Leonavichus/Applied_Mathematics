@@ -15,10 +15,13 @@ double solveEquation(double a, double b, double epsilon) {
     return -1.0;
   }
 
+  int iteration = 0;
+
   while (f(a).abs() > epsilon) {
     a = a - (f(a) / df(a));
+    iteration++;
   }
-
+  print('Количество итераций: $iteration');
   return a;
 }
 

@@ -12,9 +12,10 @@ double solveEquation(double a, double b, double epsilon) {
   }
 
   double x = 0;
-
+  int iteration = 0;
   while ((b - a).abs() > epsilon) {
-    x = (f(b) * a - f(a) * b) / (f(b) - f(a));
+    x = a - (f(a) * (b - a)) / (f(b) - f(a));
+    iteration++;
 
     if (f(a) * f(x) >= 0) {
       // Корень находится в левой половине интервала
@@ -27,7 +28,7 @@ double solveEquation(double a, double b, double epsilon) {
       return x;
     }
   }
-
+  print('Количество итераций: $iteration');
   return x;
 }
 
