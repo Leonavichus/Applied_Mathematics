@@ -2,6 +2,8 @@ import numpy as np
 import scipy.linalg as la
 
 # Функция для решения системы уравнений методом Гаусса
+
+
 def solve_gauss(A, b):
     n = len(b)
     for i in range(n):
@@ -10,11 +12,11 @@ def solve_gauss(A, b):
         for j in range(i + 1, n):
             if abs(A[j, i]) > abs(A[pivot_row, i]):
                 pivot_row = j
-        
+
         # Переставляем строки матрицы A и элементы вектора b
         A[[i, pivot_row]] = A[[pivot_row, i]]
         b[i], b[pivot_row] = b[pivot_row], b[i]
-        
+
         # Приводим матрицу A к треугольному виду
         for j in range(i + 1, n):
             factor = A[j, i] / A[i, i]
@@ -29,15 +31,18 @@ def solve_gauss(A, b):
     return x
 
 # Функция для решения системы уравнений методом LU-разложения
+
+
 def solve_lu(A, b):
     # Получение матриц L, U и перестановок P через LU-разложение
     P, L, U = la.lu(A)
-    
+
     # Решение системы с учетом перестановок
-    y = la.solve_triangular(L, P @ b, lower=True)  # Решение Ly = Pb
+    y = la.solve_triangular(L, P @ b)  # Решение Ly = Pb
     x = la.solve_triangular(U, y)  # Решение Ux = y
-    
+
     return x
+
 
 # Система уравнений и вектор b
 A = np.array([[1.0, -2.0, -1.0],
