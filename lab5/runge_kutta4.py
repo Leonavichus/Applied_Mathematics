@@ -49,7 +49,7 @@ plt.legend()
 plt.show()
 
 
-# Интерполяция точного решения на значения t, используемые в методе Эйлера
+# Интерполяция точного решения на значения t
 y_exact_interpolated = np.interp(t_rk4, t_exact, y_exact)
 # Вычисление погрешности
 error = np.abs(y_exact_interpolated - y_rk4)

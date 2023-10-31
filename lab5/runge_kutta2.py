@@ -23,9 +23,6 @@ def runge_kutta2(f, t_0, y_0, h, n):
         y_values.append(y)
     return t_values, y_values
 
-# Метод Рунге – Кутта четвертого порядка
-
-
 # Заданные параметры
 y_0 = 2  # начальное значение y
 h = 0.1  # шаг
@@ -49,7 +46,7 @@ plt.ylabel('y')
 plt.legend()
 plt.show()
 
-# Интерполяция точного решения на значения t, используемые в методе Эйлера
+# Интерполяция точного решения на значения t
 y_exact_interpolated = np.interp(t_rk2, t_exact, y_exact)
 # Вычисление погрешности
 error = np.abs(y_exact_interpolated - y_rk2)
