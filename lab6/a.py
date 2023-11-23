@@ -7,11 +7,9 @@ x = np.array([1, 2, 5, 6, 7, 9, 11, 12, 16])
 y = np.array([2, 6, 3, 2, 4, 5, 5, 9, 3])
 
 def divided_diff(x, y):
-    """Calculate divided differences."""
     n = len(y)
     coef = np.zeros([n, n])
 
-    # Initialize the first column of the divided differences table
     coef[:, 0] = y
 
     for j in range(1, n):
@@ -21,7 +19,6 @@ def divided_diff(x, y):
     return coef[0, :]
 
 def newton(x, y, x_interpolate):
-    """Perform Newton interpolation."""
     coef = divided_diff(x, y)
     result = coef[0]
 
@@ -50,8 +47,8 @@ y_newton_interpolated = [newton(x, y, xi) for xi in x_new]
 # Визуализация результатов
 plt.figure(figsize=(10, 6))
 plt.scatter(x, y, label='Исходные данные', color='red')
-# plt.plot(x_new, y_lagrange, label='Интерполяционный полином Лагранжа', linestyle='--', color='blue')
-plt.plot(x_new, y_newton_interpolated, label='Интерполяционный полином Ньютона', linestyle=':', color='green')
+plt.plot(x_new, y_lagrange, label='Интерполяционный полином Лагранжа', linestyle='--', color='blue')
+plt.plot(x_new, y_newton_interpolated, label='Интерполяционный полином Ньютона', linestyle=':', color='red')
 plt.legend()
 plt.xlabel('x')
 plt.ylabel('y')
